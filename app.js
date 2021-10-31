@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use('/api/user', userRoute);
 app.use('/api/property', propertyRoute);
 
-mongoose.connect(process.env.MONGO_URI,
+mongoose.connect('mongodb+srv://root:root123@cluster0.spzqt.mongodb.net/invitationhomesApi?retryWrites=true&w=majority',
     {useNewUrlParser: true, useUnifiedTopology: true}
 ).then(() => {
     console.log("Connected to database");
