@@ -5,6 +5,7 @@ const cors = require('cors');
 const userRoute = require('./routes/userRoute');
 const propertyRoute = require('./routes/propertyRoute');
 const cookieParser = require('cookie-parser');
+require('dotenv').config()
 
 app.use(cors({
     origin: '*'
@@ -17,7 +18,7 @@ app.use('/api/user', userRoute);
 app.use('/api/property', propertyRoute);
 
 mongoose.connect(
-    'mongodb+srv://root:root123@cluster0.spzqt.mongodb.net/invitationhomesApi?retryWrites=true&w=majority',
+    process.env.MONGO_URI,
     {useNewUrlParser: true, useUnifiedTopology: true}
 ).then(() => {
     console.log("Connected to database");
@@ -25,7 +26,6 @@ mongoose.connect(
     console.log("Can't connect", err);
 });
 
-const PORT = 7000;
-app.listen(PORT, () => {
+app.listen(process.env.PORT || 7000, () => {
     console.log('Listening to port', PORT);
 })
